@@ -1,7 +1,11 @@
+
+
+pathObject = {};
+
 export default function(page, fun) {
     if(page && fun)
     {
-        routes.set(page, fun);
+        pathObject.set(page, fun);
         return;
     }
     else
@@ -11,7 +15,6 @@ export default function(page, fun) {
     }
 }
 
-pathObject = {};
 
 function addClickListener()
 {
@@ -36,7 +39,7 @@ function directTo(newpath)
     {
         let splitted = matchPlayer.split('/');
         let playerId = splitted[1];
-        console.log(playerId);
+        //console.log(playerId);
         url = playerId;
 
         if (newpath in pathObject )
