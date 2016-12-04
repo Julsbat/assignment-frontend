@@ -11,4 +11,8 @@ export function es5() {
 }
 
 export function es6() {
+  return (spec) => {
+    const {x=0, y=0, z=0} = spec;
+    return x + y + z;
+  }
 }
