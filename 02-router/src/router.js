@@ -1,65 +1,47 @@
+var pathObject = {};
 
-
-pathObject = {};
-
-export default function(page, fun) {
-    if(page && fun)
-    {
-        pathObject.set(page, fun);
+export default function (page, fun) {
+    if (page && fun) {
+        pathObject[page] = fun;
+        const route = page.split('/').map(function (part) {
+            // is static
+            if (part.substr(0, 1) !== ':') {
+                return part
+            }
+            const name = part.substr(1)
+            return '(a-z)+'
+        }).join('\/')
+        console.log(route)
+        pathObject[route] = fun;
         return;
     }
-    else
-    {
+    else {
         start();
         addClickListener();
     }
 }
 
 
-function addClickListener()
-{
-    $( 'a' ).on( "click", function(event) {
+function addClickListener() {
+    $('a').on("click", function (event) {
         event.preventDefault();
     });
 }
 
-function start()
-{
+function start() {
     let path = window.location.pathname;
     directTo(path);
 }
 
-function directTo(newpath)
-{
+function directTo(newpath) {
+    if (pathObject[newpath]) {
+        return pathObject[newpath]();
+    }
     const matchPlayer = /(\/players\/)([a-zA-Z0-9]+)/g;
-    let url = "";
-    let path = newpath;
 
-    if(newpath.match(matchPlayer))
-    {
-        let splitted = matchPlayer.split('/');
-        let playerId = splitted[1];
-        //console.log(playerId);
-        url = playerId;
-
-        if (newpath in pathObject )
-        {
-            newpath = '*';
-        }
-
-        if (window.history.state)
-        {
-            let lastviewed = window.history.state.pathname;
-
-            if(path != lastviewed)
-            {
-                window.history.pushState({
-                    pathname: path
-                }, '', path)
-            }
-
-            let val = pathObject.get(route);
-            return val(url);
+    for (var i in pathObject) {
+        if (pathObject[i] === newpath) {
+            return pathObject[i]();
         }
     }
 
