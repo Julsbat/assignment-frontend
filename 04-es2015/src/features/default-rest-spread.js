@@ -44,7 +44,7 @@ export function es6() {
       return args.join(',')
     },
     spread: function(x = 0, y = 0, z = 0){
-      return (x + y + z);
+      return x + y + z;
     }
   }
   return o;

@@ -25,20 +25,20 @@ export function es5() {
 }
 
 export function es6() {
-  const BASIS = 2;
+  const BASE = 2;
 
   let o = {
     constants: function(val){
-      return Math.pow(BASIS, val);
+      return Math.pow(BASE, val);
     },
 
     scope: function(n){
       var sum = 0;
-      for(let x = 0; x < n; x += 1)
+      for(let i = 0; i < n; i += 1)
       {
-        sum += x
+        sum += i
       }
-      return sum
+      return i
     }
   }
   return o
