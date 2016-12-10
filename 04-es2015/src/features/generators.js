@@ -22,6 +22,5 @@ export function es6(n) {
             yield index += 1
         }
     }
-
-    return counter(n)
+    var gen = counter(n)
 }
