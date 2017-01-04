@@ -16,21 +16,21 @@ export function es5(n) {
 
 // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Statements/function*
 export function es6(n) {
-<<<<<<< HEAD
-    function* counter(n) {
+   /* function* counter(n) {
         var index = 0
         while (index < n) {
             yield index += 1
         }
     }
-    var gen = counter(n)
-=======
-  function* counter(n) {
-    let cnt = 0
-    while(cnt++ < n) {
-      yield cnt
+    var gen = counter(n)*/
+
+
+    function* counter(n) {
+        let cnt = 0
+        while(cnt++ < n) {
+            yield cnt
+        }
     }
-  }
-  return counter(n)
->>>>>>> upstr/master
+    return counter(n)
+
 }
